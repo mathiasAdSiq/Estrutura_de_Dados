@@ -85,6 +85,5 @@ def main():
         elif opcao == 4:
             n = int(input("Digite o valor de n:"))
             maiores_n(lista, n)
-        elif opcao == 5:
-            print("Saindo...")
+     
 main()
