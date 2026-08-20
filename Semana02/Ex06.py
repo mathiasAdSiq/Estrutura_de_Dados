@@ -81,11 +81,10 @@ def lista_calcula_media(lista):
 def lista_altera(lista):
     if lista == None:
         print("Lista vazia")
-        return lista
+        return 
     aux = lista
     while aux != None:
-        print(" - ", aux.dado)
-        aux = aux.proximo
+        
         aux.dado = -aux.dado
         aux = aux.proximo
 
