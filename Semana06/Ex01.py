@@ -1,5 +1,4 @@
 
-
 class No:
     def __init__(self,nome):
         self.nome = nome
@@ -32,6 +31,20 @@ def listar(fila_inicio):
         contador +=1
         aux = aux.proximo
 
+def contar_chamados(fila_inicio):
+    aux = fila_inicio
+    qtd = 0
+    while aux is not None:
+        qtd += 1
+        aux = aux.proximo
+    return qtd
+
+
+def obter_proximo(fila_inicio):
+    if fila_inicio is None:
+        return "Ninguém (Fila vazia)"
+    return fila_inicio.nome
+
 def remover(fila_inicio, fila_fim):
     if fila_inicio is None:
         print("fila vazia")
@@ -63,11 +76,18 @@ def main():
         if opcao == 1:
             nome = input("Digite o nome da pessoa: ")
             fila_inicio, fila_fim = inserir(fila_inicio, fila_fim, nome)
+            print("total aguardando:",contar_chamados(fila_inicio))
+            print("proximo da fila:", obter_proximo(fila_inicio))
         elif opcao == 2:
             listar(fila_inicio)
+            print("total aguardando:",contar_chamados(fila_inicio))
+            print("proximo da fila:", obter_proximo(fila_inicio))
+
         elif opcao == 3:
             fila_inicio, fila_fim = remover(fila_inicio, fila_fim)
             listar(fila_inicio)
+            print("total aguardando:",contar_chamados(fila_inicio))
+            print("proximo da fila:", obter_proximo(fila_inicio))
         elif opcao == 4:
             print("SAINDO...")    
 
