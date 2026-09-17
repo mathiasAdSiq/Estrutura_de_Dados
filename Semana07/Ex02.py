@@ -20,14 +20,14 @@ def adicionar_final(lista, nome):
     novo = No(nome)
 
     if lista is None:
-        return novo
-    aux = lista
-    anterior = None
+        lista = novo
+        return lista
 
-    while aux != None:
-        anterior = aux
+    aux = lista
+    
+    while aux.proximo != None:
         aux = aux.proximo
-    anterior.proximo = novo
+    aux.proximo = novo
     return lista
 
 
