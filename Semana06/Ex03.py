@@ -11,28 +11,30 @@ def inserir(pilha, carro):
     novo = No(carro)
 
     if pilha is None:
-        return novo
+        pilha = novo
+        return pilha
 
     novo.proximo = pilha
+    pilha = novo
 
-    return novo
+    return pilha
 
 
 def listar(pilha):
+
+    aux = pilha
+    contador = 1
 
     if pilha is None:
         print("Pilha vazia")
         return
 
-    aux = pilha
-    contador = 1
-
     while aux is not None:
 
-        print(f"{contador} - {aux.carro}")
+        print(f"{contador} = {aux.carro}")
 
         aux = aux.proximo
-        contador += 1
+        contador = contador + 1
 
 
 def remover_ate_carro(pilha, carro_desejado):
@@ -43,21 +45,21 @@ def remover_ate_carro(pilha, carro_desejado):
 
     encontrou = False
 
-    print("\nCarros retirados:")
+    print("Carros retirados:")
 
     while pilha is not None:
 
-        # Mostra o carro que está saindo
-        print(pilha.carro)
 
-        # Se encontrou o carro desejado,
-        # remove ele também e encerra
         if pilha.carro == carro_desejado:
+            print(pilha.carro)
             encontrou = True
+
             pilha = pilha.proximo
+
             break
 
-        # Remove o carro do topo
+        print(pilha.carro)
+
         pilha = pilha.proximo
 
     if not encontrou:
@@ -66,18 +68,9 @@ def remover_ate_carro(pilha, carro_desejado):
     return pilha
 
 
-    if not encontrou:
-        print("Carro não encontrado.")
-
-    else:
-        print(f"O carro {carro_desejado} está pronto para sair.")
-
-    return pilha
-
-
 def menu():
 
-    print("\n===== GARAGEM =====")
+    print("===== GARAGEM =====")
     print("1 - Mostrar todos os carros")
     print("2 - Remover um carro específico")
     print("3 - Sair")
@@ -89,65 +82,35 @@ def menu():
 
 def main():
 
+    opcao = 0
     pilha = None
 
-    # 20 carros cadastrados
     carros = [
-        "Fusca",
-        "Onix",
-        "Tracker",
-        "Montana",
-        "Equinox",
-        "Argo",
-        "Cronos",
-        "Mobi",
-        "Fastback",
-        "Strada",
-        "Corolla",
-        "Corolla Cross",
-        "Hilux",
-        "Uno",
-        "Escort",
-        "Corcel",
-        "Del Rey",
-        "Maverick",
-        "Gol",
-        "Civic"
+        "Fusca","Onix","Tracker","Montana","Equinox","Argo","Cronos","Mobi",
+        "Fastback","Strada","Corolla","Corolla Cross","Hilux","Uno",
+        "Escort","Corcel","Del Rey","Maverick","Gol","Civic"
     ]
 
-    # Colocando os 20 carros na pilha
+
     for carro in carros:
         pilha = inserir(pilha, carro)
 
-    opcao = 0
 
     while opcao != 3:
 
         opcao = menu()
 
         if opcao == 1:
-
-            print("\nCarros na garagem:")
             listar(pilha)
 
         elif opcao == 2:
-
-            carro_desejado = input(
-                "Digite o nome do carro que deseja retirar: "
-            )
-
-            pilha = remover_ate_carro(
-                pilha,
-                carro_desejado
-            )
+            carro_desejado = input("Digite o carro para ser removido: ")
+            pilha = remover_ate_carro(pilha,carro_desejado)
 
         elif opcao == 3:
-
-            print("Programa encerrado.")
+            print("Saindo...")
 
         else:
-
-            print("Opção inválida.")
-
+            print("Opção inválida")
 
 main()
