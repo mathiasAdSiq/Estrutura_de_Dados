@@ -1,83 +1,85 @@
 
+
+
 class No:
-
-    def __init__(self, nome):
-        self.nome = nome
-        self.proximo = None
-
-
-def adicionar_nome(lista, nome):
-    novo = No(nome)
-
-    if lista is None:
-        lista = novo
-        return lista
-    novo.proximo = lista
-    lista = novo
-    return lista
-
-def adicionar_final(lista, nome):
-    novo = No(nome)
-
-    if lista is None:
-        lista = novo
-        return lista
-
-    aux = lista
-    
-    while aux.proximo != None:
-        aux = aux.proximo
-    aux.proximo = novo
-    return lista
-
-
-def mostrar(lista):
-
-    if lista is None:
-        print("Lista vazia")
-        return
-    aux = lista
-    contador = 1
-
-    while aux is not None:
-
-        print(contador, "-", aux.nome)
-        contador += 1
-        aux = aux.proximo
+    def __init__(self, dado):
+        self.dado = dado
+        self.proximo = None 
 
 def menu():
+    print("1 - Inserir item")
+    print("2 - Listar itens")
+    print("3 - Retirar item")
+    print("4 - Mostrar itens maiores que n")
+    print("5 - Sair")
+    
+    opcao = int(input("Digite a opcao:"))
+    return opcao
 
-    print("1 - Adicionar jogador")
-    print("2 - Mostrar jogadores")
-    print("3 - Adicionar no final")
-    print("4 - Sair")
+def inserir(lista, dado):
+    no = No(dado)
 
-    opc = int(input("Digite a opção: "))
-    return opc
+    
+    if lista == None:
+        lista = no 
+        return lista
+
+    no.proximo = lista
+    lista = no
+    return lista
+
+def listar(lista):
+    aux = lista 
+    while aux != None:
+
+        print(" - ", aux.dado)
+        aux = aux.proximo
 
 
+
+def remover(lista, dado):
+    aux = lista 
+    anterior = None
+
+    if lista == None:
+        print("Lista vazia")
+        return 
+
+    while aux != None:
+        if aux.dado == dado:
+            if aux == lista: # Primeiro elemento da lista
+                lista = lista.proximo
+                return lista
+            else:
+                anterior.proximo = aux.proximo
+                return lista
+        anterior = aux    
+        aux = aux.proximo
+
+    print("Dado não encontrado")
+    return lista
+
+def maiores_n (lista, n):
+    aux = lista
+    while aux != None:
+        if aux.dado > n:
+            print(aux.dado)
+        aux = aux.proximo
 def main():
+    lista = None  
+    opcao = 0
 
-    opc = 0
-    lista = None
-
-    while opc != 4:
-        opc = menu()
-
-        if opc == 1:
-            nome = input("Digite o nome do jogador: ")
-            lista = adicionar_nome(lista, nome)
-
-        elif opc == 2:
-            mostrar(lista)
-        elif opc == 3:
-            nome = input("Digite o nome do jogador: ")
-            adicionar_final(lista,nome)
-        elif opc == 4:
-            print("Saindo...")
-
-        else:
-            print("Opção inválida")
-
-
+    while opcao != 5:
+        opcao = menu()
+        if opcao == 1:
+            dado = int(input("Digite um dado:"))
+            lista = inserir(lista, dado)
+        elif opcao == 2:
+            listar(lista)
+        elif opcao == 3:
+            dado = int(input("Dado para retirar:"))
+            lista = remover(lista, dado)
+        elif opcao == 4:
+            n = int(input("Digite o valor de n:"))
+            maiores_n(lista, n)
 main()
