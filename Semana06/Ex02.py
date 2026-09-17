@@ -62,15 +62,15 @@ def main():
             operacao = input("Inserir operação na pilha: ")
             pilha = inserir(pilha, operacao)
 
-        if opc == 2:
+        elif opc == 2:
             pilha = remover(pilha)
 
-        if opc == 3:
+        elif opc == 3:
             mostrar_ultima(pilha)
 
-        if opc == 4:
+        elif opc == 4:
             listar(pilha)
 
-        if opc == 5:
+        elif opc == 5:
             print("Saindo...") 
 main()
