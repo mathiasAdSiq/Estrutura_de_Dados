@@ -1,0 +1,66 @@
+
+class No:
+    def __init__(self, nome, responsavel):
+        self.nome = nome
+        self.responsavel = responsavel
+        self.proximo = None
+
+def inserir(lista,nome,responsavel):
+    novo = No(nome, responsavel)
+
+    if lista is None:
+        lista = novo
+        return lista
+
+    novo.proximo = lista
+    lista = novo
+    return lista
+
+def mostrar(lista):
+    
+    if lista is None:
+        print("Lista Vazia")
+        return
+
+    aux = lista
+    contador = 1
+
+    while aux is not None:
+        print(contador, "-", aux.nome, aux.responsavel)
+        contador += 1
+        aux = aux.proximo
+
+def remover(lista, nome):
+    aux = lista
+    anterior = None
+
+    if lista is None:
+        print("Lista Vazia")
+        return 
+
+    while aux != None:
+        if aux.nome == nome:
+            if anterior is None:
+                lista = aux.proximo
+            else:
+                anterior.proximo = aux.proximo
+
+            return lista
+
+        anterior = aux
+        aux = aux.proximo
+
+    print("Dado não encontrado")
+    return lista
+
+def main():
+    lista = None
+    lista = inserir(lista,"Planejamento de Produto", "Ana")
+    lista = inserir(lista,"Implementação do Backend", "João")
+    lista = inserir(lista,"Testes automatizados", "Carla")
+    mostrar(lista)
+    nome = "Planejamento de Produto"
+    remover(lista, nome)
+    mostrar(lista)
+
+main()
