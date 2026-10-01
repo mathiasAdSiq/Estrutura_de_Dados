@@ -94,9 +94,9 @@ def percorrer_contrario(lista):
 def main():
     lista = None
 
-    lista = inserir(lista, 9874, "Pedro", True)
-    lista = inserir(lista, 7149, "Puntel", True)
-    lista = inserir(lista, 8243, "Vini", False)
+    lista = inserir(lista, 7187, "João", True)
+    lista = inserir(lista, 6943, "bob", True)
+    lista = inserir(lista, 8812, "Willian", False)
 
     print()
     percorrer_normal(lista)
@@ -104,7 +104,7 @@ def main():
     print()
     percorrer_contrario(lista)
 
-    lista = remover(lista, 9874)
+    lista = remover(lista, 7187)
 
     print()
     percorrer_normal(lista)
